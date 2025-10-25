@@ -7,7 +7,13 @@ const { getUser, upsertUser, listLogs, insertLog, getProfile, upsertProfile, ins
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+//app.use(cors());
+app.use(cors({
+  origin: "*", // for now allow all; later restrict to your frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 
 // Seed demo user/profile if not present
